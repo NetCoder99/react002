@@ -1,45 +1,62 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 //import Person   from './Person/person.js';
 import Person2  from './Person/person2.js';
 
-const App = props => {
-
-  const [personsState, setPersonsState] = useState({
+class App extends Component {
+  state = {
     persons: [
-           { name: 'Max', age: 28 },
-           { name: 'Manu', age: 38 },
-           { name: 'John', age: 48 }
-         ]
-  });
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 38 },
+      { name: 'John', age: 48 }
+    ],
+    otherState: 'some other value'
+  }
 
-  const [otherState, setOtherState] = useState('some other value');
 
-  console.log(personsState, otherState);
-  
-  const switchNameHandler = () =>
-  {
-    setPersonsState(
-     {    
-       persons: [
-        { name: 'Maximus', age: 28 },
-        { name: 'Manual', age: 18 },
-        { name: 'John', age: 57 }
+  switchNameHandler1 = (newName) => {
+   console.log('switchNameHandler Was clicked');
+   this.setState( {    
+     persons: [
+      { name: 'Maximus', age: 28 },
+      { name: newName, age: 18 },
+      { name: 'John', age: 57 }
      ],
-     otherState: personsState.otherState
-   });   
+   })
   };
 
-  return (
+  switchNameHandler2 = (newName) => {
+    console.log('switchNameHandler2 Was clicked');
+    this.setState( {    
+      persons: [
+       { name: 'Max', age: 28 },
+       { name: 'Manu', age: 18 },
+       { name: newName, age: 57 }
+      ],
+    })
+   };
+
+   render () {
+    return (
+
     <div className="App">
       <h1>Hello from React.</h1>
       <p>And here is a paragraph.</p>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person2 name={personsState.persons[0].name}  age={personsState.persons[0].age}></Person2>
-      <Person2 name={personsState.persons[1].name}  age={personsState.persons[1].age}></Person2>
-      <Person2 name={personsState.persons[2].name}  age={personsState.persons[2].age}></Person2>
+      <button onClick={() => this.switchNameHandler1('Manny')}>Switch Name</button>
+      <Person2 
+          name={this.state.persons[0].name}  
+          age={this.state.persons[0].age}/>
+      <Person2 
+          name={this.state.persons[1].name}  
+          age={this.state.persons[1].age}/>
+      <Person2 
+          name={this.state.persons[2].name}  
+          age={this.state.persons[2].age}
+          click={this.switchNameHandler2.bind(this, 'Johnny')}
+        />
     </div>
-  );
+    );
+  }
 }
 
 export default App;
