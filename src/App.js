@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './Person/person.css';
 
-//import Person   from './Person/person.js';
 import Person2  from './Person/person2.js';
-
 
 class App extends Component {
   state = {
@@ -28,17 +26,6 @@ class App extends Component {
      ],
    })
   };
-
-  switchNameHandler2 = (newName) => {
-    console.log('switchNameHandler2 Was clicked');
-    this.setState( {    
-      persons: [
-       { name: 'Max', age: 28 },
-       { name: 'Manu', age: 18 },
-       { name: newName, age: 57 }
-      ],
-    })
-   };
 
 
   nameChangedHandler = (event)  => {
@@ -64,10 +51,14 @@ class App extends Component {
     if (this.state.showPersons){
       persons = (
         <div>
-          <Person2 
-              name={this.state.persons[1].name}  
-              age={this.state.persons[1].age}
-              changed={this.nameChangedHandler}/>
+          {this.state.persons.map(person => {
+            return (
+              <Person2 
+                name={person.name}
+                age={person.age}/>
+            )    
+          })
+        }
         </div>
       );    
     }
