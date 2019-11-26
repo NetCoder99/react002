@@ -8,25 +8,19 @@ import Person2  from './Person/person2.js';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 38 },
-      { name: 'John', age: 48 }
+      { id: '1', name: 'Max', age: 28 },
+      { id: '2', name: 'Manu', age: 38 },
+      { id: '3', name: 'John', age: 48 }
     ],
     otherState: 'some other value',
     showPersons: false
   }
 
-  switchNameHandler1 = (newName) => {
-   console.log('switchNameHandler Was clicked');
-   this.setState( {    
-     persons: [
-      { name: 'Maximus', age: 28 },
-      { name: newName, age: 18 },
-      { name: 'John', age: 57 }
-     ],
-   })
-  };
-
+  deletePersonHandler = (personIndex) =>  {
+    const persons = this.state.persons.slice();
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
+  }
 
   nameChangedHandler = (event)  => {
     this.setState( {    
@@ -51,11 +45,14 @@ class App extends Component {
     if (this.state.showPersons){
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return (
               <Person2 
+                click={() => this.deletePersonHandler(index)}
                 name={person.name}
-                age={person.age}/>
+                age={person.age}
+                key={person.id}  
+                />
             )    
           })
         }
