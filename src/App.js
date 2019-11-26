@@ -18,7 +18,6 @@ class App extends Component {
     showPersons: false
   }
 
-
   switchNameHandler1 = (newName) => {
    console.log('switchNameHandler Was clicked');
    this.setState( {    
@@ -60,61 +59,29 @@ class App extends Component {
 
 
   render () {
-    const btnStyle = {
-      backgroundColor: "white",
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-  }
+
+    let persons = null;
+    if (this.state.showPersons){
+      persons = (
+        <div>
+          <Person2 
+              name={this.state.persons[1].name}  
+              age={this.state.persons[1].age}
+              changed={this.nameChangedHandler}/>
+        </div>
+      );    
+    }
 
     return (
     <div className="App">
       <h1>Hello from React.</h1>
       <p>And here is a paragraph.</p>
-      <button 
-        style={btnStyle}
-        onClick={() => this.togglePersonHandler('Manny')}>Show Names</button>
-      { this.state.showPersons ? 
-        <div>
-          <Person2 
-              name={this.state.persons[0].name}  
-              age={this.state.persons[0].age}/>
-          <Person2 
-              name={this.state.persons[1].name}  
-              age={this.state.persons[1].age}
-              changed={this.nameChangedHandler}/>
-          <Person2 
-              name={this.state.persons[2].name}  
-              age={this.state.persons[2].age}
-              click={this.switchNameHandler2.bind(this, 'Johnny')}/>
-        </div>
-        : null
-      }
+      <button className="btnStyle" onClick={this.togglePersonHandler}>Show Names</button>
+      {persons}
     </div>
     );
   }
 }
 
 export default App;
-
-
-// state = {
-//   persons: [
-//     { name: 'Max', age: 28 },
-//     { name: 'Manu', age: 38 },
-//     { name: 'John', age: 48 }
-//   ],
-//   otherState: 'some other value'
-// }
-
-// switchNameHandler = () => {
-//   console.log('Was clicked');
-//   this.setState(
-//     {    persons: [
-//     { name: 'Maximus', age: 28 },
-//     { name: 'Manual', age: 18 },
-//     { name: 'John', age: 57 }
-//     ],
-//   })
 
