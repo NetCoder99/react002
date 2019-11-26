@@ -14,7 +14,8 @@ class App extends Component {
       { name: 'Manu', age: 38 },
       { name: 'John', age: 48 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false
   }
 
 
@@ -52,15 +53,20 @@ class App extends Component {
 
   }
 
+  togglePersonHandler = () => {
+    const isVisible = this.state.showPersons;
+    this.setState( { showPersons: !isVisible }) 
+  }
 
-   render () {
+
+  render () {
     const btnStyle = {
       backgroundColor: "white",
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
-    }
+  }
 
     return (
     <div className="App">
@@ -68,20 +74,23 @@ class App extends Component {
       <p>And here is a paragraph.</p>
       <button 
         style={btnStyle}
-        onClick={() => this.switchNameHandler1('Manny')}>Switch Name</button>
-      <Person2 
-          name={this.state.persons[0].name}  
-          age={this.state.persons[0].age}/>
-      <Person2 
-          name={this.state.persons[1].name}  
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}  
-          />
-      <Person2 
-          name={this.state.persons[2].name}  
-          age={this.state.persons[2].age}
-          click={this.switchNameHandler2.bind(this, 'Johnny')}
-        />
+        onClick={() => this.togglePersonHandler('Manny')}>Show Names</button>
+      { this.state.showPersons ? 
+        <div>
+          <Person2 
+              name={this.state.persons[0].name}  
+              age={this.state.persons[0].age}/>
+          <Person2 
+              name={this.state.persons[1].name}  
+              age={this.state.persons[1].age}
+              changed={this.nameChangedHandler}/>
+          <Person2 
+              name={this.state.persons[2].name}  
+              age={this.state.persons[2].age}
+              click={this.switchNameHandler2.bind(this, 'Johnny')}/>
+        </div>
+        : null
+      }
     </div>
     );
   }
