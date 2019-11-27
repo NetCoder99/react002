@@ -33,9 +33,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( {    
-      persons: persons
-    })
+    this.setState( {  persons: persons })
 
   }
 
@@ -48,10 +46,12 @@ class App extends Component {
   render () {
 
     let persons = null;
-    if (this.state.showPersons){
+    if (this.state.showPersons)
+    {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
+          {this.state.persons.map (
+            (person, index) => {
             return (
               <Person2 
                 click={() => this.deletePersonHandler(index)}
@@ -59,11 +59,12 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 key={person.id}  
-                />
+              />
             )    
-          })
+          }
+        )
         }
-        </div>
+       </div>
       );    
     }
 
