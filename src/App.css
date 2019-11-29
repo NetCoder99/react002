@@ -31,7 +31,7 @@
   padding-top: 0px;
 }
 
-.btnStyle {
+.BtnStyle {
   background-color: green ;
   font: inherit;
   border: 1px solid blue;
@@ -39,14 +39,27 @@
   cursor: pointer
 }  
 
-.btnStyle:hover{
-  background-color: lightgreen;
+.BtnStyle.Red {
+  background-color: red;
+  color: black;
 }
 
-.red {
+.BtnStyle.Red:hover{
+  background-color: salmon;
+}
+
+.Red {
   color: red;
 }
 
-.bold {
+.Bold {
   font-weight: bold;
+}
+
+.Button.Red {
+  background-color: red;
+}
+
+.Button.Red:hover {
+  background-color: salmon;
 }

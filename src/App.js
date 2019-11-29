@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import AppClasses from './App.css';
 import './Person/person.css';
 
 import Person2  from './Person/person2.js';
-
-// const StyledButton = styled.button`
-//       background-color: green;
-//       color: red;
-//       font: inherit;
-//       border: 1px solid blue;
-//       padding: 8px;
-//       cursor: pointer;
-//       &:hover {
-//         background-color: lightgreen;
-//         color: black;
-//       }
-// `;
 
 class App extends Component {
   state = {
@@ -53,6 +40,7 @@ class App extends Component {
 
   render () {
     const btnText = {text: "Show Names"};
+    let  btnClass = [AppClasses.BtnStyle];
 
     let persons = null;
     if (this.state.showPersons)
@@ -77,21 +65,23 @@ class App extends Component {
        </div>
       );   
       btnText.text = "Hide Names";
+      btnClass.push(AppClasses.Red);
+
     }
 
     const classes = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      classes.push(AppClasses.Red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      classes.push(AppClasses.Bold);
     }
 
     return (
-        <div className="App">
+        <div className={AppClasses.App}>
           <h1>Hello from React.</h1>
           <p className={classes.join(' ')}>And here is a paragraph.</p>
-          <button className='btnStyle' onClick={this.togglePersonHandler}>{btnText.text}</button>
+          <button className={btnClass.join(' ')} onClick={this.togglePersonHandler}>{btnText.text}</button>
           {persons}
         </div>
     );
