@@ -27,6 +27,10 @@
   to { transform: rotate(360deg); }
 }
 
+.trashCan {
+  padding-top: 0px;
+}
+
 .btnStyle {
   background-color: white ;
   font: inherit;
@@ -34,3 +38,11 @@
   padding: 8px;
   cursor: pointer
 }  
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}

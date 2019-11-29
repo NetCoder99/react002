@@ -44,6 +44,16 @@ class App extends Component {
 
 
   render () {
+    const btnText = {text: "Show Names"};
+
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
 
     let persons = null;
     if (this.state.showPersons)
@@ -55,6 +65,7 @@ class App extends Component {
             return (
               <Person2 
                 click={() => this.deletePersonHandler(index)}
+                remove={() => this.deletePersonHandler(index)}
                 changed={(evt) => this.nameChangedHandler(evt, person.id)}
                 name={person.name}
                 age={person.age}
@@ -65,14 +76,27 @@ class App extends Component {
         )
         }
        </div>
-      );    
+      );   
+      style.backgroundColor = 'red';
+      btnText.text = "Hide Names";
+    }
+
+    const classes = [];
+    //let classes = ['red', 'bold'].join(' ');
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
     }
 
     return (
     <div className="App">
       <h1>Hello from React.</h1>
-      <p>And here is a paragraph.</p>
-      <button className="btnStyle" onClick={this.togglePersonHandler}>Show Names</button>
+     
+      <p className={classes.join(' ')}>And here is a paragraph.</p>
+
+      <button style={style} onClick={this.togglePersonHandler}>{btnText.text}</button>
       {persons}
     </div>
     );
