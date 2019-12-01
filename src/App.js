@@ -4,6 +4,7 @@ import AppClasses from './App.css';
 import './Person/person.css';
 
 import Person2  from './Person/person2.js';
+import ErrorBoundry from './ErrorBoundry/ErrorBoundry.js';
 
 class App extends Component {
   state = {
@@ -50,14 +51,15 @@ class App extends Component {
           {this.state.persons.map (
             (person, index) => {
             return (
+              <ErrorBoundry key={person.id}>
               <Person2 
                 click={() => this.deletePersonHandler(index)}
                 remove={() => this.deletePersonHandler(index)}
                 changed={(evt) => this.nameChangedHandler(evt, person.id)}
                 name={person.name}
                 age={person.age}
-                key={person.id}  
               />
+              </ErrorBoundry>
             )    
           }
         )
@@ -66,7 +68,10 @@ class App extends Component {
       );   
       btnText.text = "Hide Names";
       btnClass.push(AppClasses.Red);
-
+    }
+    else
+    {
+      btnClass.push(AppClasses.Green);
     }
 
     const classes = [];

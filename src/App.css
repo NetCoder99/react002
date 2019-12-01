@@ -39,6 +39,12 @@
   cursor: pointer
 }  
 
+.BtnStyle.Green {
+  background-color: green;
+  color: black;
+}
+
+
 .BtnStyle.Red {
   background-color: red;
   color: black;
@@ -48,18 +54,30 @@
   background-color: salmon;
 }
 
+.BtnStyle.Green {
+  background-color: green;
+  color: black;
+}
+
+.BtnStyle.Green:hover{
+  background-color: lightgreen;
+}
 .Red {
   color: red;
+}
+
+.Green {
+  color: green;
 }
 
 .Bold {
   font-weight: bold;
 }
 
-.Button.Red {
+/* .Button.Red {
   background-color: red;
 }
 
 .Button.Red:hover {
   background-color: salmon;
-}
+} */
