@@ -13,10 +13,11 @@ const StyledDiv = styled.div`
 `;
 
 const person = (props) => {
+  console.log('[person.js] rendering...');
+
   //const rnd = Math.random();
   //if (rnd > .7){ throw new Error('Random was greater then .7');}
   return (
-
     <StyledDiv>
         <p>My name is {props.name} and I am {props.age} years old</p>
         <p>{props.children}</p>

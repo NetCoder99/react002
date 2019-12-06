@@ -1,34 +1,36 @@
 import React from 'react';
-import Classes from './Cockpit.css';
+import classes from './Cockpit.css';
 
 const Cockpit = (props) => {
 
     const assignedClasses = [];
-    let btnClass = 'BtnStyle';
+    const btnClass = [classes.BtnStyle];
 
     let btnText='Show Persons';
 
     if (props.showPersons) { 
       btnText='Hide Persons'
+      btnClass.push(classes.Red); 
     }
     else { 
       btnText='Show Persons'
+      btnClass.push(classes.Green); 
     }
 
     if (props.persons.length <= 2) {
-      assignedClasses.push(Classes.Red);
+      assignedClasses.push(classes.Red);
     }
     if (props.persons.length <= 1) {
-      assignedClasses.push(Classes.Bold);
+      assignedClasses.push(classes.Bold);
     }
 
     return (
         <div className={assignedClasses.Cockpit}>
-            <h1>Hello from React.</h1>
+            <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>You have {props.persons.length} persons left.</p>
             <button 
               onClick={props.clicked}
-              className={btnClass}>
+              className={btnClass.join(' ')}>
               {btnText}
             </button>
         </div>
