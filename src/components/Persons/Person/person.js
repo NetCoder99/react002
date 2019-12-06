@@ -1,30 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {Component} from 'react';
 import Trashcan from '../../../images/trashcan1.png'
+import classes from './person.css'
 
-const StyledDiv = styled.div`
-      width: 60%;
-      margin: 16px auto;
-      border: 1px solid black;
-      box-shadow: 3px 3px 3px  gray;
-      padding: 6px;
-      text-align: center;
-      @media (min-width: 500px){ width: 450px;}
-`;
+class Person extends Component 
+{
+  render()
+  {
+    console.log('[person.js] rendering...');
+    return (
+      <div className={classes.Person}>
+          <p>My name is {this.props.name} and I am {this.props.age} years old</p>
+          <p>{this.props.children}</p>
+          <input type="text" onChange={this.props.changed} value={this.props.name}/>
+          <img onClick={this.props.remove} src={Trashcan} width='16px' height='16px' className='trashCan' alt=''></img>
+      </div>
+    )
+  };
+}
 
-const person = (props) => {
-  console.log('[person.js] rendering...');
-
-  //const rnd = Math.random();
-  //if (rnd > .7){ throw new Error('Random was greater then .7');}
-  return (
-    <StyledDiv>
-        <p>My name is {props.name} and I am {props.age} years old</p>
-        <p>{props.children}</p>
-        <input type="text" onChange={props.changed} value={props.name}/>
-        <img onClick={props.remove} src={Trashcan} width='16px' height='16px' className='trashCan' alt=''></img>
-    </StyledDiv>
-  )
-};
-
-export default person;
+export default Person;
