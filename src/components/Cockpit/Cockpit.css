@@ -1,0 +1,47 @@
+.Cockpit {
+    text-align: center;
+  }
+
+.BtnStyle {
+background-color: green ;
+font: inherit;
+border: 1px solid blue;
+padding: 8px;
+cursor: pointer
+}  
+
+.BtnStyle.Green {
+background-color: green;
+color: black;
+}
+
+
+.BtnStyle.Red {
+background-color: red;
+color: black;
+}
+
+.BtnStyle.Red:hover{
+background-color: salmon;
+}
+
+.BtnStyle.Green {
+background-color: green;
+color: black;
+}
+
+.BtnStyle.Green:hover{
+background-color: lightgreen;
+}
+
+.Red {
+color: red;
+}
+
+.Green {
+color: green;
+}
+
+.Bold {
+font-weight: bold;
+}

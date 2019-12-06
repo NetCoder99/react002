@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Trashcan from '../images/trashcan1.png';
+import Trashcan from '../../../images/trashcan1.png'
 
 const StyledDiv = styled.div`
       width: 60%;
@@ -12,7 +12,7 @@ const StyledDiv = styled.div`
       @media (min-width: 500px){ width: 450px;}
 `;
 
-const person2 = (props) => {
+const person = (props) => {
   //const rnd = Math.random();
   //if (rnd > .7){ throw new Error('Random was greater then .7');}
   return (
@@ -26,4 +26,4 @@ const person2 = (props) => {
   )
 };
 
-export default person2;
+export default person;
