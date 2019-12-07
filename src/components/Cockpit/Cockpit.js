@@ -5,9 +5,9 @@ const Cockpit = (props) => {
 
     useEffect(() => {
       console.log('[Cockpit.js] useEffect initialize');
-      setTimeout(() =>{
-         alert('Saved data to cloud.');
-      }, 1000);
+      // setTimeout(() =>{
+      //    alert('Saved data to cloud.');
+      // }, 1000);
       return ()=> {
         console.log('[Cockpit.js] cleanup work in useEffect.');
       }
@@ -34,17 +34,17 @@ const Cockpit = (props) => {
       btnClass.push(classes.Green); 
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
       assignedClasses.push(classes.Red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       assignedClasses.push(classes.Bold);
     }
 
     return (
         <div className={assignedClasses.Cockpit}>
             <h1>{props.title}</h1>
-            <p className={assignedClasses.join(' ')}>You have {props.persons.length} persons left.</p>
+            <p className={assignedClasses.join(' ')}>You have {props.personsLength} persons left.</p>
             <button 
               onClick={props.clicked}
               className={btnClass.join(' ')}>
@@ -54,4 +54,4 @@ const Cockpit = (props) => {
     );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);

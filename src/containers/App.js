@@ -26,14 +26,15 @@ class App extends Component {
     return state;
   }
 
-  //componentWillMount() {
-  //  console.log('[App.js] componentWillMount');
-  //}
-
   componentDidMount() {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProsp, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+  
   componentDidUpdate(){
     console.log('[App.js] componentDidUpdate');
   }
@@ -60,13 +61,18 @@ class App extends Component {
     const isVisible = this.state.showPersons;
     this.setState( { showPersons: !isVisible }) 
   }
+  toggleCockpitVisible = () => {
+    const isVisible = this.state.showCockpit;
+    this.setState( { showCockpit: !isVisible }) 
+  }
 
   render () {
     console.log('[App.js] render');
-    let persons = null;
+
+    let personsView = null;
     if (this.state.showPersons)
     {
-      persons = (
+      personsView = (
         <div>
             <Persons 
               persons={this.state.persons}
@@ -78,20 +84,24 @@ class App extends Component {
       );   
     }
 
+    let cockpit = null;
+    if (this.state.showCockpit)
+    {
+      cockpit = (
+        <Cockpit 
+          title={this.props.appTitle}
+          showPersons={this.state.showPersons}
+          personsLength={this.state.persons.length}
+          clicked={this.togglePersonHandler}
+        />
+      );   
+    }
+
     return (
         <div className={AppClasses.App}>
-          <button onClick={() => {
-            this.setState({showCockpit:false});
-          }}>Remove Cockpit</button>
-          {this.state.showCockpit ? (
-            <Cockpit 
-              title={this.props.appTitle}
-              showPersons={this.state.showPersons}
-              persons={this.state.persons}
-              clicked={this.togglePersonHandler}
-            />
-          ) : null }
-          {persons}
+          <button onClick={this.toggleCockpitVisible}>Toggle Cockpit</button>
+          {cockpit}
+          {personsView}
         </div>
     );
   }
