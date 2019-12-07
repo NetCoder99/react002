@@ -1,7 +1,24 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import classes from './Cockpit.css';
 
 const Cockpit = (props) => {
+
+    useEffect(() => {
+      console.log('[Cockpit.js] useEffect initialize');
+      setTimeout(() =>{
+         alert('Saved data to cloud.');
+      }, 1000);
+      return ()=> {
+        console.log('[Cockpit.js] cleanup work in useEffect.');
+      }
+    }, []);
+
+    useEffect(() => {
+      console.log('[Cockpit.js] useEffect2 initialize');
+      return ()=> {
+        console.log('[Cockpit.js] cleanup work in useEffect2.');
+      }
+    });
 
     const assignedClasses = [];
     const btnClass = [classes.BtnStyle];
