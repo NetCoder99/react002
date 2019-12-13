@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppClasses from './App.css';
 import Persons from '../components/Persons/Persons.js';
 import Cockpit from '../components/Cockpit/Cockpit.js';
+import WithClass from '../hoc/WithClass.js';
 
 class App extends Component {
 
@@ -98,11 +99,11 @@ class App extends Component {
     }
 
     return (
-        <div className={AppClasses.App}>
+        <WithClass classes={AppClasses.App}>
           <button onClick={this.toggleCockpitVisible}>Toggle Cockpit</button>
           {cockpit}
           {personsView}
-        </div>
+        </WithClass>
     );
   }
 }
