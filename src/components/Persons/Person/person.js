@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Trashcan from '../../../images/trashcan1.png'
-import classes from './person.css'
+//import classes from './person.css'
 import Aux from '../../../hoc/Aux.js';
 
 class Person extends Component 

@@ -1,6 +1,7 @@
 import React , {useEffect} from 'react';
 import classes from './Cockpit.css';
 
+
 const Cockpit = (props) => {
 
     useEffect(() => {
@@ -22,6 +23,7 @@ const Cockpit = (props) => {
 
     const assignedClasses = [];
     const btnClass = [classes.BtnStyle];
+    var btnClickProp = props.clicked;
 
     let btnText='Show Persons';
 
@@ -37,8 +39,15 @@ const Cockpit = (props) => {
     if (props.personsLength <= 2) {
       assignedClasses.push(classes.Red);
     }
-    if (props.personsLength <= 1) {
+    if (props.personsLength === 1) {
       assignedClasses.push(classes.Bold);
+    }
+
+    if (props.personsLength < 1) {
+      assignedClasses.push(classes.Bold);
+      btnText='Reset Persons'
+      btnClass.push(classes.Green); 
+      btnClickProp = props.reset;
     }
 
     return (
@@ -46,7 +55,7 @@ const Cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>You have {props.personsLength} persons left.</p>
             <button 
-              onClick={props.clicked}
+              onClick={btnClickProp}
               className={btnClass.join(' ')}>
               {btnText}
             </button>

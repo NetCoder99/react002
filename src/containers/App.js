@@ -47,6 +47,16 @@ class App extends Component {
     this.setState({persons: persons})
   }
 
+  resetPersonHandler = () =>  {
+    console.log('[App.js] resetPersonHandler');
+    const persons = [
+      { id: '1', name: 'Max', age: 28 },
+      { id: '2', name: 'Manu', age: 38 },
+      { id: '3', name: 'John', age: 48 }
+    ];
+    this.setState({persons: persons})
+  }
+
   nameChangedHandler = (event, id)  => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -59,9 +69,11 @@ class App extends Component {
   }
 
   togglePersonHandler = () => {
+    console.log('[App.js] togglePersonHandler');
     const isVisible = this.state.showPersons;
     this.setState( { showPersons: !isVisible }) 
   }
+
   toggleCockpitVisible = () => {
     const isVisible = this.state.showCockpit;
     this.setState( { showCockpit: !isVisible }) 
@@ -94,6 +106,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           personsLength={this.state.persons.length}
           clicked={this.togglePersonHandler}
+          reset={this.resetPersonHandler}
         />
       );   
     }
